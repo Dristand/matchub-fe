@@ -1,6 +1,18 @@
-import {Box, Button, Flex, Heading, Stack, StackDivider, Text} from "@chakra-ui/react";
+import {Box, Button, Flex, Heading, Stack, StackDivider, Text, useDisclosure} from "@chakra-ui/react";
+import {
+    Modal,
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    ModalOverlay
+} from "@chakra-ui/modal";
+import ClubApplicationCard from "./modal/ClubApplicationCard";
 
 const IndividualClub = (props: any) => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
     const goBack = () => {
         window.history.back();
     }
@@ -16,7 +28,7 @@ const IndividualClub = (props: any) => {
             minWidth={'700px'}
             p={20}
         >
-            <Flex backgroundColor={'white'} w={'700px'} rounded={6}>
+            <Flex w={'700px'} rounded={6}>
                 <Stack divider={<StackDivider />} spacing='4' w={'full'} p={4}>
                     <Box padding={3}>
                         <Heading size='lg' textTransform='uppercase'>
@@ -59,9 +71,23 @@ const IndividualClub = (props: any) => {
                         </Text>
                     </Box>
                     <Box flexDirection={'row'} justifyItems={'center'} ml={4}>
-                        <Button colorScheme={'teal'} w={"48%"} type={'submit'} mr={4}>Apply</Button>
-                        <Button colorScheme={'red'} w={"48%"} type={'submit'} color={'white'}
-                                onClick={goBack}>Back</Button>
+                        <Button onClick={onOpen} colorScheme={'teal'} w={"48%"} type={'submit'} mr={4}>Apply</Button>
+                        <Button w={"48%"} type={'submit'} onClick={goBack}>Back</Button>
+
+                        <Modal onClose={onClose} isOpen={isOpen} isCentered>
+                            <ModalOverlay />
+                            <ModalContent>
+                                <ModalHeader>Club Application Confirmation</ModalHeader>
+                                <ModalCloseButton />
+                                <ModalBody>
+                                    <ClubApplicationCard props={props.props}/>
+                                </ModalBody>
+                                <ModalFooter>
+                                    <Button colorScheme='teal' mr={3} w={'50%'}>Save</Button>
+                                    <Button onClick={onClose} w={'50%'} colorScheme={'red'}>Cancel</Button>
+                                </ModalFooter>
+                            </ModalContent>
+                        </Modal>
                     </Box>
                 </Stack>
             </Flex>

@@ -27,7 +27,7 @@ export default function SignUpConfirmationModal() {
                     </ModalBody>
                     <ModalFooter>
                         <Button colorScheme='teal' mr={3} w={'50%'}>Save</Button>
-                        <Button onClick={onClose} w={'50%'}>Cancel</Button>
+                        <Button onClick={onClose} w={'50%'} colorScheme={'red'}>Cancel</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
