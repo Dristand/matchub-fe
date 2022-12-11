@@ -4,6 +4,12 @@
 
 Frontend of Club Application app.
 
+## Unfinished Implementation
+1. API Call for clubList, clubDetail, clubApplication
+2. Authorization for each page
+3. Sign Out button on navbar after signed in
+4. Docker for deployment (local/vpc)
+
 ## Requirements
 1. Git (Latest)
 2. NPM
