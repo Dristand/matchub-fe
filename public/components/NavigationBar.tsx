@@ -73,7 +73,7 @@ export default function WithSubnavigation() {
                         fontSize={'sm'}
                         fontWeight={400}
                         variant={'link'}
-                        href={'#'}>
+                        href={'/user/auth'}>
                         Sign In
                     </Button>
                 </Stack>
@@ -244,7 +244,7 @@ const NAV_ITEMS: Array<NavItem> = [
             {
                 label: 'List',
                 subLabel: 'See available or applied club list.',
-                href: '#',
+                href: '/club/list',
             },
         ],
     }
