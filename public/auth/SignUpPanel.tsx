@@ -1,4 +1,5 @@
 import {Button, FormControl, FormLabel, Input, TabPanel} from "@chakra-ui/react";
+import SignUpConfirmationModal from "./modal/SignUpConfirmationModal";
 
 export default function SignUpPanel() {
     return (
@@ -24,7 +25,7 @@ export default function SignUpPanel() {
                 <Input placeholder={'********'} variant={'filled'} mb={'6'} type={'password'}/>
             </FormControl>
 
-            <Button colorScheme={'teal'} w={'full'} type={'submit'}>Sign Up</Button>
+            <SignUpConfirmationModal/>
         </TabPanel>
     )
 }

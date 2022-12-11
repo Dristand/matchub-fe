@@ -10,8 +10,8 @@ import {
     FormControl,
     FormLabel, Card
 } from "@chakra-ui/react";
-import SignUpPanel from "../public/SignUpPanel";
-import SignInPanel from "../public/SignInPanel";
+import SignUpPanel from "../public/auth/SignUpPanel";
+import SignInPanel from "../public/auth/SignInPanel";
 
 function HomePage() {
     return (
