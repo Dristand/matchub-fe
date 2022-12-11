@@ -47,7 +47,6 @@ export const signIn = async (email: string, password: string) => {
     console.log(`${process.env.NEXT_PUBLIC_API_URL}auth/login/`)
     const response = await buildPostFetch("auth/login/", {email, password})
     if (response.status === 201) {
-        console.log('berhasil login')
         const responseData = await response.json() as LoginResponse;
 
         await persistUserInfo(responseData);
