@@ -1,6 +1,6 @@
 import {Box, Card, CardBody, CardHeader, Heading, Stack, StackDivider, Text} from "@chakra-ui/react";
 
-export default function SignUpConfirmationCard() {
+export default function SignUpConfirmationCard(props: any) {
     return (
         <Card>
             <CardBody>
@@ -10,7 +10,7 @@ export default function SignUpConfirmationCard() {
                             Student Id
                         </Heading>
                         <Text pt='2' fontSize='sm'>
-                            1906293114
+                            {props.props.studentId}
                         </Text>
                     </Box>
                     <Box>
@@ -18,7 +18,7 @@ export default function SignUpConfirmationCard() {
                             Full Name
                         </Heading>
                         <Text pt='2' fontSize='sm'>
-                            John Doe
+                            {props.props.fullName}
                         </Text>
                     </Box>
                     <Box>
@@ -26,7 +26,7 @@ export default function SignUpConfirmationCard() {
                             Email Address
                         </Heading>
                         <Text pt='2' fontSize='sm'>
-                            example@gmail.com
+                            {props.props.email}
                         </Text>
                     </Box>
                 </Stack>

@@ -1,8 +1,7 @@
 import API_BASE_URL from "../../../public/const/api";
-const alternativeHardCodeURL = 'http://localhost:3000/'
 
 interface LoginResponse {
-    access: string,
+    access_token: string,
 }
 
 interface AccessTokenFormat {
@@ -12,9 +11,13 @@ interface AccessTokenFormat {
 }
 
 export const getUserToken = () => localStorage.getItem("accessToken");
+export const getUserId = () => localStorage.getItem("userId");
+export const getEmail = () => localStorage.getItem("email");
+export const getFullName = () => localStorage.getItem("fullName");
 
 export const buildPostFetch = async (url: string, data: Record<string, any>, authorize = false) => (
-    fetch(`${alternativeHardCodeURL}${url}`, {
+    fetch(`${API_BASE_URL}${url}`, {
+        "mode": "cors",
         "method": "POST",
         "headers": authorize ? {
             "Content-Type": "application/json",
@@ -27,7 +30,8 @@ export const buildPostFetch = async (url: string, data: Record<string, any>, aut
 )
 
 export const buildGetFetch = async (url: string, authorize = false) => (
-    fetch(`${alternativeHardCodeURL}${url}`, {
+    fetch(`${API_BASE_URL}${url}`, {
+        "mode": "cors",
         "method": "GET",
         "headers": authorize ? {
             "Content-Type": "application/json",
@@ -39,8 +43,11 @@ export const buildGetFetch = async (url: string, authorize = false) => (
 )
 
 export const signIn = async (email: string, password: string) => {
+    console.log(email, password)
+    console.log(`${process.env.NEXT_PUBLIC_API_URL}auth/login/`)
     const response = await buildPostFetch("auth/login/", {email, password})
-    if (response.status === 200) {
+    if (response.status === 201) {
+        console.log('berhasil login')
         const responseData = await response.json() as LoginResponse;
 
         await persistUserInfo(responseData);
@@ -49,7 +56,7 @@ export const signIn = async (email: string, password: string) => {
 }
 
 const persistUserInfo = async (loginResponse: LoginResponse) => {
-    localStorage.setItem("accessToken", loginResponse.access);
+    localStorage.setItem("accessToken", loginResponse.access_token);
 
     const response = await buildGetFetch("auth/jwt", true);
     if (response.status == 200) {
